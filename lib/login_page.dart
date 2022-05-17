@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   signIn();
                 },
                 icon: const Icon(Icons.lock_open),
-                label: const Text('Sign In'),
+                label: const Text('Login In'),
               ),
               const Divider(),
               RichText(

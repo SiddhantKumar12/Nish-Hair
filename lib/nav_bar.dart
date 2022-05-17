@@ -20,7 +20,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 2);
+    _controller = PersistentTabController(initialIndex: 1);
     _hideNavBar = false;
   }
 

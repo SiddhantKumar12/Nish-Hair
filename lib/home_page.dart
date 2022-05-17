@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (pickedFile != null) Text(pickedFile!.name),
-              Text(user.email!, style: const TextStyle(fontSize: 24)),
+              // Text(user.email!, style: const TextStyle(fontSize: 24)),
               const SizedBox(height: 30),
               SizedBox(
                 height: 50,
@@ -89,6 +89,7 @@ class _HomePageState extends State<HomePage> {
                     child: const Text('Upload File',
                         style: TextStyle(fontSize: 24))),
               ),
+              const SizedBox(height: 15),
               buildProgress(),
             ],
           ),
