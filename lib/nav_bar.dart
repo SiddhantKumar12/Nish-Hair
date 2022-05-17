@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:resolute/home2.dart';
+import 'package:resolute/preview_page.dart';
 import 'package:resolute/home_page.dart';
+import 'package:resolute/profile_page.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({Key? key}) : super(key: key);
@@ -19,12 +20,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 0);
+    _controller = PersistentTabController(initialIndex: 2);
     _hideNavBar = false;
   }
 
   List<Widget> _buildScreens() {
     return [
+      const ProfilePage(),
       const HomePage(),
       const Preview(),
     ];
@@ -33,16 +35,22 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   List<PersistentBottomNavBarItem> _navBarsItem() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home),
+        icon: const Icon(Icons.account_circle),
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.grey,
-        title: 'Home',
+        title: 'Profile',
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.add),
+        activeColorPrimary: Colors.white,
+        inactiveColorPrimary: Colors.grey,
+        title: 'ADD',
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.local_library),
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.grey,
-        title: 'My Courses',
+        title: 'History',
       ),
     ];
   }

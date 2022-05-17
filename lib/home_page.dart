@@ -52,37 +52,47 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
+        appBar: AppBar(
+          title: const Text('Logout'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                },
+                icon: const Icon(Icons.arrow_back))
+          ],
+        ),
         body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (pickedFile != null) Text(pickedFile!.name),
-          Text(user.email!, style: const TextStyle(fontSize: 24)),
-          const SizedBox(height: 30),
-          SizedBox(
-            height: 50,
-            width: 200,
-            child: ElevatedButton(
-              onPressed: selectFile,
-              child: const Text(
-                'Select File',
-                style: TextStyle(fontSize: 24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (pickedFile != null) Text(pickedFile!.name),
+              Text(user.email!, style: const TextStyle(fontSize: 24)),
+              const SizedBox(height: 30),
+              SizedBox(
+                height: 50,
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: selectFile,
+                  child: const Text(
+                    'Select File',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(height: 10),
+              SizedBox(
+                height: 50,
+                width: 200,
+                child: ElevatedButton(
+                    onPressed: uploadFile,
+                    child: const Text('Upload File',
+                        style: TextStyle(fontSize: 24))),
+              ),
+              buildProgress(),
+            ],
           ),
-          const SizedBox(height: 10),
-          SizedBox(
-            height: 50,
-            width: 200,
-            child: ElevatedButton(
-                onPressed: uploadFile,
-                child:
-                    const Text('Upload File', style: TextStyle(fontSize: 24))),
-          ),
-          buildProgress(),
-        ],
-      ),
-    ));
+        ));
   }
 
   Widget buildProgress() => StreamBuilder<TaskSnapshot>(
