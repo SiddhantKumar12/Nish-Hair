@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "23292274871",
+    "project_id": "resolute-4967d",
+    "storage_bucket": "resolute-4967d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23292274871:android:f98bc9b9ef7eb156104532",
+        "android_client_info": {
+          "package_name": "com.example.resolute"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23292274871-lfi2s9flrb6mf122jo8kltqvhimgp8ko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPpNNx2l9JA9xU9sxorbi00dYdDNx5QoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23292274871-lfi2s9flrb6mf122jo8kltqvhimgp8ko.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
