@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:resolute/auth_page.dart';
 import 'package:resolute/utils.dart';
-
 import 'home_page.dart';
-import 'nav_bar.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +30,7 @@ class MyApp extends StatelessWidget {
             } else if (snapshot.hasError) {
               return const Center(child: Text('Something Went Wrong'));
             } else if (snapshot.hasData) {
-              return const CustomBottomNavigationBar();
+              return const HomePage();
             } else {
               return const AuthPage();
               // return const AuthPage();
