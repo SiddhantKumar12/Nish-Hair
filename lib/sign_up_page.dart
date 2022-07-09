@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:resolute/uploading_data/profile_info.dart';
 import 'package:resolute/utils.dart';
 import 'custom_field_widget.dart';
 import 'main.dart';
@@ -14,6 +15,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  String userId = '';
   final formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -117,27 +119,27 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           isPass: isHiddenPassword,
                         ),
-                        CustomTextField(
-                          validator: (value) =>
-                              value != null && value.length < 8
-                                  ? 'Enter min. 8 characters'
-                                  : null,
-                          textEditingController: _confirmPasswordController,
-                          textInputType: TextInputType.visiblePassword,
-                          hintText: 'Confirm Password',
-                          icon: const Icon(Icons.lock),
-                          suffixicon: InkWell(
-                            onTap: () {
-                              setState(() {
-                                isHiddenPassword = !isHiddenPassword;
-                              });
-                            },
-                            child: Icon(isHiddenPassword
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                          ),
-                          isPass: isHiddenPassword,
-                        ),
+                        // CustomTextField(
+                        //   validator: (value) =>
+                        //       value != null && value.length < 8
+                        //           ? 'Enter min. 8 characters'
+                        //           : null,
+                        //   textEditingController: _confirmPasswordController,
+                        //   textInputType: TextInputType.visiblePassword,
+                        //   hintText: 'Confirm Password',
+                        //   icon: const Icon(Icons.lock),
+                        //   suffixicon: InkWell(
+                        //     onTap: () {
+                        //       setState(() {
+                        //         isHiddenPassword = !isHiddenPassword;
+                        //       });
+                        //     },
+                        //     child: Icon(isHiddenPassword
+                        //         ? Icons.visibility
+                        //         : Icons.visibility_off),
+                        //   ),
+                        //   isPass: isHiddenPassword,
+                        // ),
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: Container(
@@ -200,13 +202,24 @@ class _SignUpPageState extends State<SignUpPage> {
         barrierDismissible: false,
         builder: (context) => const Center(child: CircularProgressIndicator()));
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim());
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: _emailController.text.trim(),
+              password: _passwordController.text.trim());
+      setState(() {
+        userId = userCredential.user!.uid;
+      });
+
+      print(userCredential.user!.uid);
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ProfileScreen(
+              userId: userId,
+            )));
+
+    // navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
