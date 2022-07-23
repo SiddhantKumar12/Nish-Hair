@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:resolute/phone_auth/phone_auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +21,13 @@ class _HomePageState extends State<HomePage> {
           IconButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
+                // Navigator.popUntil(context, (route) => route.isFirst);
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => SignInWithPhone(),
+                //   ),
+                // );
               },
               icon: const Icon(Icons.arrow_back))
         ],
